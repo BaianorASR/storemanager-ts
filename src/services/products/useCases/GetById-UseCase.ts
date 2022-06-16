@@ -8,7 +8,7 @@ export class GetByIdUseCase {
   async execute(id: number): Promise<IProductsEntityDTO> {
     const product = await this.repository.getById(id);
 
-    if (!product) throw new AppError('Product not found', 404);
+    if (!product) throw new AppError(404, 'Product not found');
 
     return product;
   }

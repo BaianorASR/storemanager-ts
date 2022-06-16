@@ -1,14 +1,16 @@
 import AppError from '../../../error/appError';
-import { ISalesByIdDTO } from '../DTOs/Sales-DTO';
-import { IGetByIdRepository } from '../repositories/GetById-Repository';
+import {
+  IGetByIdRepository,
+  IGetByIdSalesRequested,
+} from '../repositories/GetById-Repository';
 
 export class GetByIdUseCase {
   constructor(private repository: IGetByIdRepository) {}
 
-  async execute(id: number): Promise<ISalesByIdDTO[]> {
+  async execute(id: number): Promise<IGetByIdSalesRequested[]> {
     const product = await this.repository.getById(id);
 
-    if (!product.length) throw new AppError('Sale not found', 404);
+    if (!product.length) throw new AppError(404, 'Sale not found');
 
     return product;
   }

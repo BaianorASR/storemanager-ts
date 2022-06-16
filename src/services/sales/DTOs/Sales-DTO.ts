@@ -4,9 +4,3 @@ export interface ISalesEntityDTO {
   productId: number;
   quantity: number;
 }
-
-export interface ISalesByIdDTO {
-  date: Date;
-  productId: number;
-  quantity: number;
-}
