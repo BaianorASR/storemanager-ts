@@ -3,3 +3,4 @@ node_modules
 dist
 src/__tests__
 test
+__test__
