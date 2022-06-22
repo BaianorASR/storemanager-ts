@@ -8,7 +8,7 @@ const connection = mysql.createPool({
   connectionLimit: 10,
   queueLimit: 0,
   password: '1234',
-  port: 3306,
+  // port: 3306,
 });
 
 export default connection;

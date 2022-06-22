@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { createController } from '../../domain/products/integrations/Create-integration';
+import { deleteController } from '../../domain/products/integrations/Delete-implementation';
 import { getAllController } from '../../domain/products/integrations/GetAll-integration';
 import { getByIdController } from '../../domain/products/integrations/GetById-integration';
 import { updateController } from '../../domain/products/integrations/Update-integration';
@@ -21,4 +22,8 @@ productsRoute.post('/products', async (request, response) => {
 
 productsRoute.put('/products/:id', async (request, response) => {
   await updateController.handle(request, response);
+});
+
+productsRoute.delete('/products/:id', async (request, response) => {
+  await deleteController.handle(request, response);
 });

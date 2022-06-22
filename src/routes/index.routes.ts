@@ -10,5 +10,5 @@ export const indexRoute = Router();
 
 indexRoute.use(productsRoute);
 indexRoute.use(salesRoute);
-
+// Error
 indexRoute.use(ErrorMiddleware);
