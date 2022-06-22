@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 
 import { ICreateProductRequested } from '../repositories/Create-Repository';
-import { CreateUseCase } from '../useCases/Create';
+import { CreateUseCase } from '../useCases/Create-USeCase';
 
 export class CreateController {
   constructor(private useCase: CreateUseCase) {}
