@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
-import { getSalesAllController } from '../../services/sales/integrations/GetAll-integration';
-import { getSalesByIdController } from '../../services/sales/integrations/GetById-integration';
+import { getSalesAllController } from '../../domain/sales/integrations/GetAll-integration';
+import { getSalesByIdController } from '../../domain/sales/integrations/GetById-integration';
 
 export const salesRoute = Router();
 

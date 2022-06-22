@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  db:
+    image: mysql:5.7
+    container_name: mysql_container
+    ports:
+      - 3306:3306
+    volumes:
+      - ./databases:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234
+      - MYSQL_USER=baianor
+      - MYSQL_PASSWORD=1234
+      - MYSQL_HOST=localhost
+      # STORE MANAGER

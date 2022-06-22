@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=node
 .readme.md
 __test__
+databases
 ### Node ###
 # Logs
 logs
