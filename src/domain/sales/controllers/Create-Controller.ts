@@ -7,7 +7,6 @@ export class CreateSalesController {
 
   async handle(request: Request, response: Response) {
     const requestedSales = await this.useCase.execute(request.body);
-
     return response.status(201).json(requestedSales);
   }
 }
