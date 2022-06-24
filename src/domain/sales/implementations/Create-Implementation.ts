@@ -8,7 +8,6 @@ import { ICreateSalesRepository } from '../repositories/Create-Repository';
 export class CreateSalesImplementation implements ICreateSalesRepository {
   async create(salesArray: ICreateSalesRegisterDTO[]): Promise<IRequestedSalesDTO> {
     await this.checkIfHaveQuantityAvailable(salesArray);
-
     const salesId = await this.executeInsertNewSale();
     await this.executeUpdateSalesProducts(salesArray, salesId);
     await this.executeUpdateProductsAmount(salesArray);
@@ -24,14 +23,17 @@ export class CreateSalesImplementation implements ICreateSalesRepository {
       quantity: number;
     }
 
-    salesArray.forEach(async (sale: ICreateSalesRegisterDTO) => {
-      const Q = 'SELECT quantity FROM StoreManager.products WHERE id = ?';
-      const [result] = await connection.execute<IQuantity[]>(Q, [sale.productId]);
+    const hasErrorInQuantityLimit = salesArray.some(
+      async (sale: ICreateSalesRegisterDTO) => {
+        const Q = 'SELECT quantity FROM StoreManager.products WHERE id = ?';
+        const [result] = await connection.execute<IQuantity[]>(Q, [sale.productId]);
+        return result[0].quantity - sale.quantity < 0;
+      },
+    );
 
-      if (result[0].quantity - sale.quantity < 0) {
-        throw new AppError(500, 'A quantidade disponível é menor que o solicitado');
-      }
-    });
+    if (hasErrorInQuantityLimit) {
+      throw new AppError(422, 'Such amount is not permitted to sell');
+    }
   }
 
   // Create New Sale for get ID to Products

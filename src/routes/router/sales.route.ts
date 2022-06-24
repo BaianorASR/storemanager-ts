@@ -1,6 +1,7 @@
 import { Router } from 'express';
 
 import { createSalesController } from '../../domain/sales/integrations/Create-Integration';
+import { deleteSalesController } from '../../domain/sales/integrations/Delete-Integration';
 import { getSalesAllController } from '../../domain/sales/integrations/GetAll-integration';
 import { getSalesByIdController } from '../../domain/sales/integrations/GetById-integration';
 import { updateSalesController } from '../../domain/sales/integrations/Update-integration';
@@ -21,4 +22,8 @@ salesRoute.post('/sales', async (request, response) => {
 
 salesRoute.put('/sales/:id', async (request, response) => {
   await updateSalesController.handle(request, response);
+});
+
+salesRoute.delete('/sales/:id', async (request, response) => {
+  await deleteSalesController.handle(request, response);
 });
